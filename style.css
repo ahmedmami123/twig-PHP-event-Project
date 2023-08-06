@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+.ahmed {
+  top: 0%;
+
+  width: 100%;
+  height: 10%;
+  background-color: rgb(255, 255, 255);
+  padding: 0px;
+  line-height: 75px;
+  z-index: 9999999999999999999;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+}
+.ahmed .nav1 {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.ahmed .nav1 h1 {
+  color: rgb(141, 139, 139);
+  font-family: "Dancing Script", cursive;
+}
+.ahmed .nav2 {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.ahmed .nav2 a {
+  color: rgb(141, 139, 139);
+  font-family: "Dancing Script", cursive;
+  font-size: 25px;
+  text-decoration: none;
+  transition: 1s;
+}
+.ahmed .nav2 a:hover {
+  color: #007bff;
+  transition: 1s;
+}
+.container_ahmed {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container_ahmed .viewD {
+  margin-top: 40px;
+  width: 70%;
+  height: 550px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container_ahmed .viewD .d1 {
+  width: 45%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container_ahmed .viewD .d1 img {
+  width: 70%;
+}
+.container_ahmed .viewD .d2 {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container_ahmed .viewD .d2 .h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 70px;
+  color: rgb(141, 139, 139);
+}
+.container_ahmed .viewD .d2 .h6 {
+  font-size: 20px;
+  width: 80%;
+  text-align: justify;
+  font-family: "Rubik", sans-serif;
+  margin-top: 20px;
+}
+
+.container_ahmed .viewD .d2 .h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.table {
+  margin-top: 20px;
+}
+.viewstext {
+  width: 100%;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 80px;
+  color: rgb(141, 139, 139);
+}
+.viewstex {
+  width: 100%;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+  font-size: 80px;
+  color: rgb(141, 139, 139);
+}
+.btns {
+  width: 90%;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+}

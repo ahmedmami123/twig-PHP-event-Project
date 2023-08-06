@@ -1,0 +1,40 @@
+{% extends "template.html" %} {% block user %}
+<div class="viewstext">Views Users</div>
+
+<table class="table">
+  <tr>
+    <th>#</th>
+    <th>Firs name</th>
+
+    <th>Last name</th>
+    <th>Date de naissance</th>
+    <th>Email</th>
+    <th>Action</th>
+  </tr>
+  {% for r in result %}
+  <tr>
+    <td>{{r.user_id}}</td>
+    <td>{{r.firstname}}</td>
+    <td>{{r.lastname}}</td>
+    <td>{{r.dob}}</td>
+
+    <td>{{r.email}}</td>
+
+    <td>
+      <a href="index.php?page=view&id={{r.user_id}}" class="btn btn-primary"
+        >View</a
+      >
+
+      <a href="index.php?page=Edit&id={{r.user_id}}" class="btn btn-warning"
+        >Edit</a
+      >
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br />
+<br />
+<br />
+<br />
+{% endblock %}
