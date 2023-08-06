@@ -21,11 +21,15 @@
     <td>{{r.email}}</td>
 
     <td>
-      <a href="index.php?page=view&id={{r.user_id}}" class="btn btn-primary"
+      <a
+        href="index.php?action=Editusers&id={{r.user_id}}"
+        class="btn btn-primary"
         >View</a
       >
 
-      <a href="index.php?page=Edit&id={{r.user_id}}" class="btn btn-warning"
+      <a
+        href="index.php?action=Editusers&id={{r.user_id}}"
+        class="btn btn-warning"
         >Edit</a
       >
     </td>

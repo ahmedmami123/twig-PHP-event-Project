@@ -17,7 +17,23 @@ function GetUsers($_user,$twig)  {
     ));
 }
 
+function EditUsers($twig,$_user)  {
+    $id=$_GET['id'];
+    $result=$_user->getUserDetails($id);
 
+    echo $twig->render('edituser.html',array(
+        'r'=>$result
+    
+    ));
+}
+function EditUsersPost($twig,$_user)  {
+    extract($_POST);
+
+    $result=$_user->EditUser($id,$firstname,$lastname,$email,$password,$dob,$user_type);
+    header('location:index.php?action=viewUsers');
+
+  
+}
 
 
    

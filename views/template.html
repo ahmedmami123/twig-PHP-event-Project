@@ -38,7 +38,7 @@
         <a href="register.php">Inscription</a>
         <a href="Login.php">Login <span class="sr-only">(current)</span></a>
 
-        <a href="view_user.php">View Users</a>
+        <a href="index.php?action=viewUsers">View Users</a>
 
         <a href="../views/veiwUser.php?id="
           ><span>Hello ! </span> <span class="sr-only">(current)</span></a
@@ -58,6 +58,9 @@
         
         
         {% endblock %}
+        {% block edituser%}
+        {% endblock %}
+
     </div>
 
     <footer
