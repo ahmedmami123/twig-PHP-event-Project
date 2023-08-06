@@ -1,0 +1,28 @@
+{% extends "template.html" %} {% block user %}
+
+<div class="viewstext">Mon Profil</div>
+
+<div class="viewD" style="margin-top: -100px">
+  <div class="d1">
+    <img src="UploadsUserPath/ahmedmami940@gmail.com.jpg" />
+  </div>
+
+  <div class="d2">
+    <div class="h1">{{r.firstname}} {{r.lastname}}</div>
+    <div class="h3">
+      Date de naissance : {{r.dob}}
+      <div class="h3">email : {{r.email}}</div>
+
+      <br />
+      <div class="btns">
+        <a
+          href="index.php?action=Editusers&id={{r.user_id}}"
+          class="btn btn-warning"
+          style="width: 187px; margin-top: 10px"
+          >Edit</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

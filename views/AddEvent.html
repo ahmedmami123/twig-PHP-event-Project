@@ -1,0 +1,76 @@
+{% extends "template.html" %} {% block AddEvent %}
+
+<div class="viewstext">Vérifier la date disponible</div>
+<form action="../views/AddEvent.php" method="post">
+  <div class="form-group">
+    <input type="date" class="form-control" id="dob" name="dob" />
+  </div>
+  <button type="submit" name="submit" class="btn btn-primary btn-block">
+    Submit
+  </button>
+</form>
+<br />
+
+<br /><br />
+<a
+  href="../views/veiw.php?id=<?php echo $date['event_id']?>"
+  class="btn btn-primary"
+  >View</a
+>
+
+<div class="viewstext">Ajouter un evenement</div>
+{% if r==1 %}
+<div class="alert alert-success" role="alert">{{ msg }}</div>
+{% endif %}
+<form
+  method="post"
+  action="index.php?action=AddEventPost"
+  enctype="multipart/form-data"
+>
+  <div class="form-group">
+    <label for="eventname">titre d'evenement</label>
+    <input
+      required
+      type="text"
+      placeholder="titre d'evenement"
+      class="form-control"
+      id="eventname"
+      name="eventname"
+    />
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input
+      required
+      type="text"
+      placeholder="Description"
+      class="form-control"
+      id="description"
+      name="description"
+    />
+  </div>
+  <div class="form-group">
+    <label for="d_debut">date de début</label>
+    <input type="date" class="form-control" id="d_debut" name="d_debut" />
+  </div>
+
+  <br />
+  <div class="custom-file">
+    <input
+      type="file"
+      accept="image/*"
+      class="custom-file-input"
+      id="avatar"
+      name="avatar"
+    />
+    <label class="custom-file-label" for="avatar">Choose File</label>
+    <small id="avatar" class="form-text text-danger"
+      >File Upload is Optional</small
+    >
+  </div>
+
+  <button type="submit" name="submit" class="btn btn-secondary btn-block">
+    Submit
+  </button>
+</form>
+{% endblock %}

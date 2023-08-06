@@ -1,0 +1,38 @@
+{% extends "template.html" %} {% block Login %} {% if r==1 %}
+<div class="alert alert-success" role="alert">{{ msg }}</div>
+{% endif %}
+<div class="viewstext">Login {{ r }}</div>
+<form action="index.php?action=LoginPost" method="post">
+  <table class="table table-sm">
+    <tr>
+      <td><label for="email">Email : *</label></td>
+      <td>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="email"
+          value=""
+        />
+      </td>
+    </tr>
+    <tr>
+      <td><label for="password">Password : *</label></td>
+      <td>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="password"
+        />
+      </td>
+    </tr>
+  </table>
+  <input
+    type="submit"
+    value="Login"
+    class="btn btn-secondary btn-block"
+  /><br />
+  <a href="">Forgot Password</a>
+</form>
+{% endblock %}

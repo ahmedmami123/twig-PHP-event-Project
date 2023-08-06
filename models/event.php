@@ -49,9 +49,10 @@ return false;
     }
     public function GetEvent(){
         try{
-            $sql="SELECT * FROM `event`";
+            $sql="SELECT * FROM `EVENT`";
             $results=$this->db->query($sql);
-            return $results;
+            $r = $results->fetchAll(PDO::FETCH_ASSOC);
+            return $r;
         }catch (PDOException $e) {
         echo $e->getMessage();
         return false;

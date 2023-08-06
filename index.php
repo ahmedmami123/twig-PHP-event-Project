@@ -1,8 +1,9 @@
 <?php 
 require_once 'vendor/autoload.php';
+include_once 'session.php';
+require_once 'controlleur/user_controller.php' ;
+require_once 'controlleur/event_controlleur.php' ;
 
-// require_once 'db/config.php' ;
-// require_once 'models/user.php' ;
 
 
 
@@ -11,19 +12,6 @@ $loader = new \Twig\Loader\FilesystemLoader('views');
 
 $twig = new \Twig\Environment($loader);
 
-
-
-
-
-//     $result=$_user->GetTousUser();
-
- 
-
-
-// echo $twig->render('view_user.html',array(
-// 'result'=>$result
-// ));
- require_once 'controlleur/user_controller.php' ;
 
 
 
@@ -36,20 +24,67 @@ $twig = new \Twig\Environment($loader);
   if (isset($_GET['action'])) {
      $action = $_GET['action'];
      switch ($action) {
-        case '':
-        GetUsers($_user,$twig);
-            break;
+      /*--------------------------------------------------------------------------
+      --------------------------------------users---------------------------------
+      ---------------------------------------------------------------------------*/
          case 'viewUsers':
          GetUsers($_user,$twig);
-             break;
+         break;
          case 'Editusers':
          EditUsers($twig,$_user);
-             break;
-             case 'EditusersPost':
-             EditUsersPost($twig,$_user);
-                 break;
+         break;
+         case 'EditusersPost':
+         EditUsersPost($_user);
+         break;
+         case 'viewsingle':
+         GetUserdetail($twig,$_user);
+         break;
+         case 'DeleteUser':
+         DeleteUser($_user);
+         break;
+         case 'Register':
+         Register($twig);
+         break;
+         case 'RegisterPost':
+         RegisterPost($_user,$twig);
+         break;
+         case 'Login':
+         Login($twig);
+         break;
+         case 'LoginPost':
+         LoginPost($_user,$twig);
+         break;
+         case 'LogOut':
+         Logout($twig);
+         break;
+
+           /*--------------------------------------------------------------------------
+      --------------------------------------Evénement---------------------------------
+      ---------------------------------------------------------------------------*/
+      case 'AddEvent':
+         AddEvent($twig);
+         break;
+         case 'AddEventPost':
+            AddEventPost($event, $twig);
+            break;
+            case 'ViewEvent':
+               GetEvents($event,$twig,$_user);
+               break;
+               case 'EditEvent':
+                  EditEvents($twig,$event);
+                  break;
+                  case 'EditEventPost':
+                     EditEventPost($event) ;
+                     break;
+                     case 'DeleteEvent':
+                        DeleteEvent($event) ;
+                        break;
+                        case 'ViewEventDet':
+                           GetEventdetail($twig,$event)  ;
+                           break;
      }}else{
         GetUsers($_user,$twig);
+        echo $_SESSION['user_id'];
         
      }
  
