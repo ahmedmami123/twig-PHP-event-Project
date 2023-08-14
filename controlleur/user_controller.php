@@ -11,7 +11,26 @@ function Register($twig)  {
     
     ));
 }
-
+function Nav($twig,$_user)  {
+  if(!isset($_SESSION['user_id'])){
+    echo $twig->render('nav.html',array(
+        'aff'=>0,
+      
+            ));
+  }
+else{
+        
+        $user_id=$_SESSION['user_id'];
+        $result=$_user->getUserDetails($user_id);
+        echo $twig->render('nav.html',array(
+    'aff'=>1,
+    'r'=>$result
+        ));
+ }
+   
+    
+   
+}
 function RegisterPost($_user, $twig)  {
     if(isset($_POST['submit'])){
     
@@ -81,7 +100,8 @@ echo $twig->render('Login.html',array(
             $result = $_user->GettUser($email,$new_password);
             if(!$result){
                 echo $twig->render('Login.html',array(
-                    'msg'=>"Email >Username or Password are incorrect"
+                    'msg'=>"Email or Password incorrect",
+                    'r'=>1
         
                 ));
             }
@@ -92,11 +112,11 @@ echo $twig->render('Login.html',array(
             $id=$_SESSION['user_id'];
             $result=$_user->getUserDetails($id);
 
-            echo $twig->render('viewsingle.html',array(
-                'r'=>$result
+            // echo $twig->render('viewsingle.html',array(
+            // //     'r'=>$result
             
-            ));
-            
+            // // ));
+            header('location:index.php?action=viewsingle&id='.$id);
             }
         }
      
@@ -108,9 +128,8 @@ echo $twig->render('Login.html',array(
         function Logout($twig)  {
             session_destroy();
     
-            echo $twig->render('Login.html',array(
-            
-            ));
+            header('location:index.php?action=Login');
+
         }
     
      
@@ -187,7 +206,18 @@ function EditUsersPost($_user)  {
 }
 
 function GetUserdetail($twig,$_user)  {
+
     $id=$_GET['id'];
+    $result=$_user->getUserDetails($id);
+
+    echo $twig->render('viewsingle.html',array(
+        'r'=>$result
+    
+    ));
+}
+function GetUserdetailProfil($twig,$_user)  {
+    
+    $id=$_SESSION['user_id'];
     $result=$_user->getUserDetails($id);
 
     echo $twig->render('viewsingle.html',array(

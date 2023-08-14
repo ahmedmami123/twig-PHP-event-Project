@@ -1,0 +1,44 @@
+{% extends "template.html" %} {% block ViewReservation %}
+<div class="viewstext">View Reservation</div>
+<table class="table">
+  <tr>
+    <th>#</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Date de naissance</th>
+    <th>email</th>
+    <th>action</th>
+  </tr>
+  {% for r in result %}
+  <tr>
+    <td>{{r.user_id}}</td>
+    <td>{{r.firstname}}</td>
+    <td>{{r.lastname}}</td>
+    <td>{{r.dob}}</td>
+
+    <td>{{r.email}}</td>
+    <td>
+      <a
+        onclick="return confirm('Are you sure you want to delete this record?');"
+        href="index.php?action=deleteres&id={{r.inscri_id}}"
+        class="btn btn-dark"
+        style="width: 175px; margin-top: 10px"
+        >Annuler Reservation</a
+      >
+
+      {% if r.validat ==0 %}
+      <a
+        onclick="return confirm('Are you sure you want to accept this Reservation?');"
+        href="index.php?action=Editres&id={{r.inscri_id}}"
+        class="btn btn-success"
+        style="width: 175px; margin-top: 10px"
+        >Accepter Reservation</a
+      >
+
+      {% endif %}
+    </td>
+    {% endfor %}
+  </tr>
+</table>
+
+{% endblock %}

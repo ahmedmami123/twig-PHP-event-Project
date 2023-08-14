@@ -8,21 +8,29 @@
   </div>
 
   <div class="d2">
-    <div class="h1">{{r.firstname}} {{r.lastname}}</div>
+    <div class="h1">{{r.firstname}} {{r.lastname}} {{ f }}</div>
     <div class="h3">
       Date de naissance : {{r.dob}}
       <div class="h3">email : {{r.email}}</div>
 
       <br />
-      <div class="btns">
+      <div class="btnss">
         <a
           href="index.php?action=Editusers&id={{r.user_id}}"
           class="btn btn-warning"
-          style="width: 187px; margin-top: 10px"
+          style="width: 175px; margin-top: 10px"
           >Edit</a
+        >
+        <a
+          style="width: 175px; margin-top: 10px"
+          href="index.php?action=ViewReservationUser&id={{r.user_id}}"
+          class="btn btn-primary"
+        >
+          Views Reservation</a
         >
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}

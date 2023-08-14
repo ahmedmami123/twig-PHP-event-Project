@@ -26,29 +26,10 @@
   </head>
 
   <body>
-    <div class="ahmed">
-      <div class="nav1">
-        <h1>Evenement</h1>
-      </div>
-      <div class="nav2">
-        <a href="index.php?action=AddEvent">ajouter evenement</a>
-
-        <a href="index.php?action=ViewEvent">View evenement</a>
-
-        <a href="index.php?action=Register">Inscription</a>
-        <a href="index.php?action=Login">Login <span class="sr-only">(current)</span></a>
-
-        <a href="index.php?action=viewUsers">View Users</a>
-
-        <a href="../views/veiwUser.php?id="
-          ><span>Hello ! </span> <span class="sr-only">(current)</span></a
-        >
-        <a class="nav-item nav-link" href="index.php?action=LogOut"
-          >Logout <span class="sr-only">(current)</span></a
-        >
-      </div>
-    </div>
-
+    {% block nav %} 
+        
+        
+    {% endblock %}
     <div class="container_ahmed">
         {% block hello %} 
         
@@ -87,8 +68,16 @@
 
           {% endblock %}
 
-    </div>
 
+          {% block ViewReservation %}
+          {% endblock %}
+
+    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
     <footer
       style="width: 100%"
       class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
@@ -114,8 +103,7 @@
 
 
 
-
-      
+    
     </footer>
 </div>
 <!-- Optional JavaScript -->
@@ -138,7 +126,7 @@ $(function() {
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0",
-        dateFormat: "yy-mm-dd"
+        dateFormat: "yy-dd-mm"
     });
 });
 </script>

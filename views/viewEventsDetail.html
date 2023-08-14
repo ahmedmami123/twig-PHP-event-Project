@@ -25,28 +25,37 @@
 
 
 
+           
+            {% if rt2.user_type=='admin' %}
 
             <a href="index.php?action=EditEvent&id={{r.event_id}}" class="btn btn-warning"
                 style="width: 187px; margin-top: 10px;">Edit</a>
             <a onclick="return confirm('Are you sure you want to delete this record?');"
                 href="index.php?action=DeleteEvent&id={{r.event_id}}" class="btn btn-danger"
                 style="width: 187px; margin-top: 10px;">Delete</a>
+                {% endif %}
+                {% if rt==0 %}
 
-            <a href="../views/inscri.php?id=<?php echo $result['event_id']?>" class="btn btn-primary"
+            <a href="index.php?action=Reservation&id={{r.event_id}}" class="btn btn-primary"
                 style="width: 187px; margin-top: 10px;">Reservation</a>
-
+                {% endif %}
+              
+                {% if rt==1 %}
+                
             <a onclick="return confirm('Are you sure you want to delete this record?');"
-                href="../views/delInscri.php?id=<?php echo $result['event_id']?>" class="btn btn-dark"
+                href="index.php?action=DeleteReservation&id={{r.event_id}}" class="btn btn-dark"
                 style="width: 187px; margin-top: 10px;">Annuler
                 Reservation</a>
+                {% endif %}
 
 
-
+                {% if rt2.user_type=='admin' %}
  
             <a style="width: 187px; margin-top: 10px;"
-                href="../views/view_reserv.php?id=<?php echo $result['event_id']?>" class="btn btn-primary"> Views
+                href="index.php?action=ViewReservation&id={{r.event_id}}" class="btn btn-primary"> Views
                 Reservation</a>
          
+                {% endif %}
 
         </div>
     </div>

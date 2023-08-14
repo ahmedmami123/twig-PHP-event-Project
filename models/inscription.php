@@ -7,6 +7,32 @@ class inscri{
         $this->db=$conn;
     }
 
+public function GetTousReservation($id){
+    try{
+        $sql="SELECT * FROM `inscription`, `user`, `event` WHERE `inscription`.`user_id`=`user`.`user_id` && `inscription`.`event_id`=`event`.`event_id` && `inscription`.`event_id`=$id";
+        $stmt=$this->db->query($sql);
+        // $stmt->bindparam(':id',$id);
+        $stmt->execute();
+        $result=$stmt->fetchall(PDO::FETCH_ASSOC);
+        return $result;
+    }catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+}
+public function GetTousReservationUser($id){
+    try{
+        $sql="SELECT * FROM `inscription`, `user`, `event` WHERE `inscription`.`user_id`=`user`.`user_id` && `inscription`.`event_id`=`event`.`event_id` && `inscription`.`user_id`=$id";
+        $stmt=$this->db->query($sql);
+        // $stmt->bindparam(':id',$id);
+        $stmt->execute();
+        $result=$stmt->fetchall(PDO::FETCH_ASSOC);
+        return $result;
+    }catch (PDOException $e) {
+    echo $e->getMessage();
+    return false;
+}
+}
     public function getInscriByEevnt_id($id){
         try{
          
@@ -65,7 +91,7 @@ public function getUserEventByid($user_id,$event_id){
 }
 
 
-public function DeleteReservation($id,$user_id,){
+public function DeleteReservation($id,$user_id){
     try {
         $sql="DELETE from inscription where inscri_id=:id and user_id=:user_id";
     $stmt=$this->db->prepare($sql);
@@ -82,6 +108,18 @@ public function DeleteReservation($id,$user_id,){
 public function DeleteReservationbyid($id){
     try {
         $sql="DELETE from inscription where user_id=:id";
+    $stmt=$this->db->prepare($sql);
+    $stmt->bindparam(':id',$id);
+    $stmt->execute();
+    return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+public function DeleteReservationbyinscri($id){
+    try {
+        $sql="DELETE from inscription where inscri_id=:id";
     $stmt=$this->db->prepare($sql);
     $stmt->bindparam(':id',$id);
     $stmt->execute();
@@ -121,16 +159,22 @@ public function DeleteReservationbyid($id){
         }
             }
 
+
             public function GetReservation($id){
                 try{
-                    $sql="SELECT * FROM `inscription` where event_id=$id";
-                    $results=$this->db->query($sql);
-                    return $results;
+                    $sql="SELECT * FROM `inscription` where inscri_id = $id";
+                    $stmt=$this->db->query($sql);
+              
+                    $stmt->execute();
+                    $result=$stmt->fetch();
+                    return $result;
                 }catch (PDOException $e) {
                 echo $e->getMessage();
                 return false;
             }
             }
+
+           
             public function Editrep($id,$rep,$valid){
                 try {
                     $sql="UPDATE `inscription` SET `reponse`=:rep,`validat`=:valid WHERE inscri_id = :id";

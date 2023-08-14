@@ -1,22 +1,31 @@
 {% extends "template.html" %} {% block AddEvent %}
 
-<div class="viewstext">Vérifier la date disponible</div>
-<form action="../views/AddEvent.php" method="post">
+<div class="viewstext">Vérifier la date disponible {{ s }}</div>
+<form action="index.php?action=GetEventDate" method="post">
   <div class="form-group">
-    <input type="date" class="form-control" id="dob" name="dob" />
+    <input
+      type="date"
+      class="form-control"
+      id="dob"
+      name="dob"
+      value="{{d.date_debut}}"
+    />
   </div>
   <button type="submit" name="submit" class="btn btn-primary btn-block">
     Submit
   </button>
 </form>
 <br />
-
-<br /><br />
+{% if s==1 %}
+<p>Evenement {{ d.eventname}} party disponible pour le {{ d.date_debut}}</p>
 <a
-  href="../views/veiw.php?id=<?php echo $date['event_id']?>"
+  href="index.php?action=ViewEventDet&id={{d.event_id}}"
   class="btn btn-primary"
   >View</a
 >
+{% endif %} {% if s==2 %}
+<p>Aucun événement n'est prévu pour le {{ d }}</p>
+<br /><br />
 
 <div class="viewstext">Ajouter un evenement</div>
 {% if r==1 %}
@@ -68,9 +77,10 @@
       >File Upload is Optional</small
     >
   </div>
-
+  <br /><br /><br />
   <button type="submit" name="submit" class="btn btn-secondary btn-block">
     Submit
   </button>
 </form>
-{% endblock %}
+
+{% endif %} {% endblock %}

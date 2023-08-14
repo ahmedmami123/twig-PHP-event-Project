@@ -3,6 +3,8 @@ require_once 'vendor/autoload.php';
 include_once 'session.php';
 require_once 'controlleur/user_controller.php' ;
 require_once 'controlleur/event_controlleur.php' ;
+require_once 'controlleur/reservation.php' ;
+
 
 
 
@@ -17,10 +19,9 @@ $twig = new \Twig\Environment($loader);
 
  
  
-
   require_once 'controlleur/user_controller.php' ;
  
- 
+  Nav($twig,$_user);
   if (isset($_GET['action'])) {
      $action = $_GET['action'];
      switch ($action) {
@@ -39,6 +40,9 @@ $twig = new \Twig\Environment($loader);
          case 'viewsingle':
          GetUserdetail($twig,$_user);
          break;
+         case 'viewProfil':
+            GetUserdetailProfil($twig,$_user);
+            break;
          case 'DeleteUser':
          DeleteUser($_user);
          break;
@@ -70,6 +74,16 @@ $twig = new \Twig\Environment($loader);
             case 'ViewEvent':
                GetEvents($event,$twig,$_user);
                break;
+               case 'GetEventDate':
+                  GetEventsDate($event,$twig,$_user);
+                  break;
+                  case 'GetEventcaln':
+                     GetEventsclander($event,$twig,$_user);
+                     break;
+                     case 'viewcal':
+                        viewcal($twig)  ;
+  
+                        break;
                case 'EditEvent':
                   EditEvents($twig,$event);
                   break;
@@ -80,11 +94,37 @@ $twig = new \Twig\Environment($loader);
                         DeleteEvent($event) ;
                         break;
                         case 'ViewEventDet':
-                           GetEventdetail($twig,$event)  ;
+                           GetEventdetail($twig,$event,$_user,$inscri)  ;
                            break;
+  /*--------------------------------------------------------------------------
+      --------------------------------------Reservation---------------------------------
+      ---------------------------------------------------------------------------*/
+
+                           case 'Reservation':
+                              Reservation($inscri, $twig) ;
+                              break;
+                              case 'DeleteReservation':
+                                 DeleteReservation($inscri) ;
+                                 break;
+                                 case 'ViewReservation':
+                                    ViewReservation($twig,$inscri) ;
+                                    break;
+                                    case 'ViewReservationUser':
+                                       ViewReservationProfil($twig,$inscri) ;
+                                       break;
+                                    case 'Editres':
+                                       Editres($inscri) ;
+                                       break;
+                                       case 'deleteres':
+                                          deleteres($inscri) ;
+                                          break;
+                                          case 'deleteresProfil':
+                                             deleteresProfil($inscri) ;
+                                             break;
+                                 
      }}else{
-        GetUsers($_user,$twig);
-        echo $_SESSION['user_id'];
+      Register($twig);
+      //   echo $_SESSION['user_id'];
         
      }
  

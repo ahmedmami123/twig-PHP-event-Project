@@ -13,6 +13,12 @@ function AddEvent($twig)  {
     echo $twig->render('AddEvent.html',array(
     
     ));
+}function viewcal($twig)  {
+  
+    
+    echo $twig->render('cal.html',array(
+    
+    ));
 }
 
 
@@ -63,11 +69,16 @@ function AddEventPost($event, $twig){
 
 function GetEvents($event,$twig,$_user)  {
     $result=$event->GetEvent();
+    if(isset($_SESSION['userid'])){
     $id=$_SESSION['user_id'];
     $result1=$_user->getUserByUser_id($id);
+    echo $twig->render('view_event.html',array(
+        'u'=>$result1
+        ));}
       echo $twig->render('view_event.html',array(
       'result'=>$result,
-      'u'=>$result1
+      
+      
       ));
   }
 
@@ -100,13 +111,62 @@ function DeleteEvent($event)  {
 
   
 }
+function  GetEventsDate($event,$twig,$_user){
+      if(isset($_POST['submit'])){
+        $datee=$_POST['dob'];
+        
+        // $search=$event->geteventBydate($date_debut);
+        $date=$event->getEventDate($datee);
+        if($date){
 
-function GetEventdetail($twig,$event)  {
+        echo $twig->render('AddEvent.html',array(
+    'd'=>$date,
+    's'=>1
+        ));
+        }else{
+            echo $twig->render('AddEvent.html',array(
+                'd'=>$datee,
+                's'=>2
+                    ));
+        }
+        }
+}
+function  GetEventsclander($event,$twig,$_user){
+    if(isset($_POST['submit'])){
+      $datee=$_POST['dob'];
+      echo 'hhhhhhh' ,$datee;
+      // $search=$event->geteventBydate($date_debut);
+    //   $date=$event->getEventDate($datee);
+      
+//       if($date){
+// //           echo $twig->render('../../views/calendar/index.html
+// // ',array(
+// //               'd'=>$datee,
+            
+// //                   ));
+//     // header('location:index.php?action=viewUsers');
+
+//       }
+      }
+}
+function GetEventdetail($twig,$event,$_user,$inscri)  {
     $id=$_GET['id'];
     $result=$event->getEventDetails($id);
+    
+    $user_id=$_SESSION['user_id'];
+    $rt=$inscri->getUserEventByid($user_id,$id); 
+if($rt['num']<=0){
+    $rt1=0;
+}
+else{
+    $rt1=1;
+}
+    $rt2=$_user->getUserByUser_id($user_id);
 
     echo $twig->render('viewEventsDetail.html',array(
-        'r'=>$result
+        'r'=>$result,
+        'rt'=>$rt1,
+        'rt2'=>$rt2
     
     ));
 }

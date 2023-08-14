@@ -1,0 +1,32 @@
+{% block nav %}
+
+<div class="ahmed">
+  <div class="nav1">
+    <h1>Evenement</h1>
+  </div>
+  <div class="nav2">
+    {% if aff==1 %}
+    <a href="index.php?action=AddEvent">ajouter evenement</a>
+
+    <a href="index.php?action=ViewEvent">View evenement</a>
+    {% if r.user_type=='admin' %}
+
+    <a href="index.php?action=viewUsers">View Users</a>
+    {% endif %}
+    <a href="index.php?action=viewProfil"
+      ><span>Hello ! {{ r.firstname }} </span>
+      <span class="sr-only">(current)</span></a
+    >
+    <a class="nav-item nav-link" href="index.php?action=LogOut"
+      >Logout <span class="sr-only">(current)</span></a
+    >
+    {% endif %} {% if aff==0 %}
+    <a href="index.php?action=Register">Inscription</a>
+    <a href="index.php?action=Login"
+      >Login <span class="sr-only">(current)</span></a
+    >
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
